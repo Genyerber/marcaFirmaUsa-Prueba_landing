@@ -220,3 +220,61 @@
     transform: translateY(0);
   }
 }
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  margin-left: 15px;
+
+  button {
+    border: 1px solid #0658F6;
+    background: transparent;
+    color: #0658F6;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+
+    &.active {
+      background: #0658F6;
+      color: #fff;
+    }
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.logo-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0658F6;
+
+  span {
+    font-size: 0.9rem;
+    vertical-align: super;
+  }
+}
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+  margin-left: 15px;
+
+  a {
+    border: 1px solid #0658F6;
+    color: #0658F6;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+
+    &:hover {
+      background: #0658F6;
+      color: #fff;
+    }
+  }
+}

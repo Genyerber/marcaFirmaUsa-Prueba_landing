@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { EmailService } from '../../../../core/services/email.service';
 import { FormData, ServiceType } from '../../../../core/models';
 
@@ -12,10 +17,14 @@ import { FormData, ServiceType } from '../../../../core/models';
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
+
   contactForm: FormGroup;
   isSubmitting = false;
   submitSuccess = false;
   submitError = false;
+
+  /** 👇 CONTROL DEL MODAL */
+  showPrivacy = false;
 
   serviceOptions = [
     { value: ServiceType.REGISTRO, label: 'Registro' },
@@ -37,36 +46,51 @@ export class FormComponent {
     });
   }
 
+  /** ✅ ABRIR MODAL */
+  openPrivacy(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.showPrivacy = true;
+  }
+
+  /** ✅ CERRAR MODAL */
+  closePrivacy() {
+    this.showPrivacy = false;
+  }
+
   onSubmit() {
-    if (this.contactForm.valid && !this.isSubmitting) {
-      this.isSubmitting = true;
-      this.submitSuccess = false;
-      this.submitError = false;
-
-      const formData: FormData = this.contactForm.value;
-
-      this.emailService.sendForm(formData).subscribe({
-        next: () => {
-          this.submitSuccess = true;
-          this.isSubmitting = false;
-          this.contactForm.reset();
-          setTimeout(() => {
-            this.submitSuccess = false;
-          }, 5000);
-        },
-        error: () => {
-          this.submitError = true;
-          this.isSubmitting = false;
-          setTimeout(() => {
-            this.submitError = false;
-          }, 5000);
-        }
+    if (this.contactForm.invalid || this.isSubmitting) {
+      Object.values(this.contactForm.controls).forEach(control => {
+        control.markAsTouched();
       });
-    } else {
-      Object.keys(this.contactForm.controls).forEach(key => {
-        this.contactForm.get(key)?.markAsTouched();
-      });
+      return;
     }
+
+    this.isSubmitting = true;
+    this.submitSuccess = false;
+    this.submitError = false;
+
+    const formData: FormData = this.contactForm.value;
+
+    this.emailService.sendForm(formData).subscribe({
+      next: () => {
+        this.submitSuccess = true;
+        this.isSubmitting = false;
+        this.contactForm.reset();
+
+        setTimeout(() => {
+          this.submitSuccess = false;
+        }, 5000);
+      },
+      error: () => {
+        this.submitError = true;
+        this.isSubmitting = false;
+
+        setTimeout(() => {
+          this.submitError = false;
+        }, 5000);
+      }
+    });
   }
 
   isFieldInvalid(fieldName: string): boolean {

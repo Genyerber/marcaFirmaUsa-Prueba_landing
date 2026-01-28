@@ -2,11 +2,19 @@
   <div class="container">
     <div class="form-header">
       <h2>Evaluación rápida</h2>
-      <p class="form-subtitle">Déjanos tus datos y te contactamos hoy o el siguiente día hábil.</p>
+      <p class="form-subtitle">
+        Déjanos tus datos y te contactamos hoy o el siguiente día hábil.
+      </p>
     </div>
 
     <div class="form-container">
-      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+      <form
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+        class="contact-form"
+      >
+
+        <!-- NOMBRE -->
         <div class="form-group">
           <label for="fullName">Nombre completo *</label>
           <input
@@ -14,12 +22,14 @@
             id="fullName"
             formControlName="fullName"
             [class.error]="isFieldInvalid('fullName')"
-            placeholder="Juan Pérez">
+            placeholder="Juan Pérez"
+          />
           <span class="error-message" *ngIf="isFieldInvalid('fullName')">
             El nombre completo es requerido (mínimo 3 caracteres)
           </span>
         </div>
 
+        <!-- EMAIL -->
         <div class="form-group">
           <label for="email">Correo *</label>
           <input
@@ -27,12 +37,14 @@
             id="email"
             formControlName="email"
             [class.error]="isFieldInvalid('email')"
-            placeholder="juan@ejemplo.com">
+            placeholder="juan@ejemplo.com"
+          />
           <span class="error-message" *ngIf="isFieldInvalid('email')">
             Ingresa un correo válido
           </span>
         </div>
 
+        <!-- TELÉFONO -->
         <div class="form-group">
           <label for="phone">Teléfono *</label>
           <input
@@ -40,48 +52,69 @@
             id="phone"
             formControlName="phone"
             [class.error]="isFieldInvalid('phone')"
-            placeholder="+1 (555) 123-4567">
+            placeholder="+1 (555) 123-4567"
+          />
           <span class="error-message" *ngIf="isFieldInvalid('phone')">
             Ingresa un teléfono válido
           </span>
         </div>
 
+        <!-- SERVICIO -->
         <div class="form-group">
           <label for="service">Servicio *</label>
           <select
             id="service"
             formControlName="service"
-            [class.error]="isFieldInvalid('service')">
+            [class.error]="isFieldInvalid('service')"
+          >
             <option value="">Selecciona un servicio</option>
-            <option *ngFor="let option of serviceOptions" [value]="option.value">
+            <option
+              *ngFor="let option of serviceOptions"
+              [value]="option.value"
+            >
               {{ option.label }}
             </option>
           </select>
+
           <span class="error-message" *ngIf="isFieldInvalid('service')">
             Selecciona un servicio
           </span>
         </div>
 
+        <!-- CHECKBOX PRIVACIDAD -->
         <div class="form-group checkbox-group">
           <label class="checkbox-label">
             <input
               type="checkbox"
               formControlName="acceptPrivacy"
-              [class.error]="isFieldInvalid('acceptPrivacy')">
-            <span>Acepto <a href="#" class="link">Política de privacidad</a></span>
+            />
+            <span>
+              Acepto la
+              <a
+                href=""
+                class="link"
+                (click)="openPrivacy($event)"
+              >
+                Política de privacidad
+              </a>
+            </span>
           </label>
+
           <span class="error-message" *ngIf="isFieldInvalid('acceptPrivacy')">
             Debes aceptar la política de privacidad
           </span>
         </div>
 
+        <!-- BOTÓN -->
         <button
           type="submit"
           class="btn-submit"
-          [disabled]="isSubmitting">
+          [disabled]="isSubmitting"
+        >
           {{ isSubmitting ? 'Enviando...' : 'Solicitar evaluación' }}
         </button>
 
+        <!-- ALERTAS -->
         <div class="alert alert-success" *ngIf="submitSuccess">
           Formulario enviado exitosamente. Te contactaremos pronto.
         </div>
@@ -93,3 +126,33 @@
     </div>
   </div>
 </section>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal-overlay" *ngIf="showPrivacy">
+  <div class="modal">
+    <h3>Política de Privacidad</h3>
+
+    <div class="modal-content">
+      <p>
+        En MarcaFirme USA protegemos la información personal de nuestros usuarios.
+        Los datos recopilados mediante este formulario serán utilizados
+        únicamente para fines de contacto y asesoría legal.
+      </p>
+
+      <p>
+        No compartimos información con terceros, salvo obligación legal
+        o requerimiento de autoridades competentes.
+      </p>
+
+      <p>
+        Al enviar este formulario usted acepta el tratamiento responsable
+        de sus datos conforme a esta política.
+      </p>
+    </div>
+
+    <button class="modal-btn" (click)="closePrivacy()">
+      Cerrar
+    </button>
+  </div>
+</div>

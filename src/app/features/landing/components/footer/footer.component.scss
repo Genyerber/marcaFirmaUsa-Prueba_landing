@@ -183,3 +183,82 @@
     background-position: 1000px 0;
   }
 }
+
+
+/* ===========================
+   MODALES LEGALES
+=========================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 25, 55, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal {
+  background: $white;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 20px;
+  padding: $spacing-xl;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.3s ease;
+}
+
+.modal h3 {
+  font-family: $font-headings;
+  color: $primary-blue;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.modal-content {
+  font-size: 1rem;
+  color: lighten($text-dark, 15%);
+  line-height: 1.8;
+  text-align: justify;
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.modal-btn {
+  margin-top: $spacing-lg;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, $primary-blue, $cyan);
+  color: $white;
+  font-weight: $weight-semibold;
+  font-size: 1rem;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+}
+
+/* Animaciones */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,28 +1,47 @@
 <nav class="navbar" [class.scrolled]="isScrolled">
   <div class="container">
     <div class="navbar-content">
+
+      <!-- LOGO -->
       <div class="navbar-logo">
-        <img src="assets/icons/logo-marcafirme.svg" alt="MarcaFirme USA" class="logo">
+        <div class="logo-text">
+          marca<span>®</span>firma
+        </div>
       </div>
 
+      <!-- MENU -->
       <ul class="navbar-menu" [class.active]="isMobileMenuOpen">
-        <li><a (click)="scrollToSection('services')">Servicios</a></li>
-        <li><a (click)="scrollToSection('process')">Proceso</a></li>
-        <li><a (click)="scrollToSection('faq')">Preguntas</a></li>
-        <li><a (click)="scrollToSection('contact')">Contacto</a></li>
+        <li><a i18n="@@navServices" (click)="scrollToSection('services')">Servicios</a></li>
+        <li><a i18n="@@navProcess" (click)="scrollToSection('process')">Proceso</a></li>
+        <li><a i18n="@@navFaq" (click)="scrollToSection('faq')">Preguntas</a></li>
+        <li><a i18n="@@navContact" (click)="scrollToSection('contact')">Contacto</a></li>
       </ul>
 
-      <button class="btn-primary navbar-cta" (click)="scheduleConsultation()">
-        Agendar asesoría
+      <!-- CTA -->
+      <button class="btn-primary navbar-cta" i18n="@@navCta" (click)="scheduleConsultation()">
+        Cotizar ahora
       </button>
 
-      <button class="navbar-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen" aria-label="Menu">
-        <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect y="0" width="30" height="3" rx="1.5" [attr.fill]="isMobileMenuOpen ? '#0658F6' : '#0658F6'"/>
-          <rect y="10.5" width="30" height="3" rx="1.5" [attr.fill]="isMobileMenuOpen ? '#0658F6' : '#0658F6'" [style.opacity]="isMobileMenuOpen ? 0 : 1"/>
-          <rect y="21" width="30" height="3" rx="1.5" [attr.fill]="isMobileMenuOpen ? '#0658F6' : '#0658F6'"/>
+      <!-- IDIOMA -->
+      <div class="lang-switch">
+        <a href="/es">ES</a>
+        <a href="/en">EN</a>
+      </div>
+
+      <!-- MOBILE -->
+      <button
+        class="navbar-toggle"
+        (click)="toggleMobileMenu()"
+        [class.active]="isMobileMenuOpen"
+        aria-label="Menu"
+      >
+        <svg width="30" height="24" viewBox="0 0 30 24">
+          <rect y="0" width="30" height="3" rx="1.5"/>
+          <rect y="10.5" width="30" height="3" rx="1.5"/>
+          <rect y="21" width="30" height="3" rx="1.5"/>
         </svg>
       </button>
+
     </div>
   </div>
 </nav>

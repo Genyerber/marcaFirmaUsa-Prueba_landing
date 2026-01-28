@@ -85,12 +85,13 @@
     }
 
     .about-description {
-      font-size: 1.2rem;
-      color: lighten($text-dark, 20%);
-      line-height: 1.9;
-      margin-bottom: 0;
-      animation: fadeInUp 0.8s ease-out 0.3s backwards;
-      position: relative;
+       font-size: 1.2rem;
+        color: lighten($text-dark, 20%);
+        line-height: 1.9;
+        margin-bottom: 0;
+        animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        position: relative;
+        text-align: justify;
 
       @media (min-width: $breakpoint-tablet) {
         font-size: 1.4rem;

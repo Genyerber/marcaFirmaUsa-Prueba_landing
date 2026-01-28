@@ -1,14 +1,15 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-content">
+
       <div class="footer-logo">
         <img src="assets/icons/logo-marcafirme.svg" alt="MarcaFirme USA">
       </div>
 
       <div class="footer-links">
-        <a href="#" class="footer-link">Política de privacidad</a>
+        <a class="footer-link" (click)="openPrivacy()">Política de privacidad</a>
         <span class="separator">|</span>
-        <a href="#" class="footer-link">Términos y condiciones</a>
+        <a class="footer-link" (click)="openTerms()">Términos y condiciones</a>
       </div>
 
       <p class="footer-copyright">
@@ -17,3 +18,62 @@
     </div>
   </div>
 </footer>
+
+<!-- MODAL PRIVACIDAD -->
+<div class="modal-overlay" *ngIf="showPrivacy">
+  <div class="modal">
+    <h3>Política de Privacidad</h3>
+
+    <div class="modal-content">
+      <p>
+        En MarcaFirme USA valoramos y protegemos la privacidad de nuestros usuarios.
+        La información personal proporcionada será utilizada únicamente para fines
+        relacionados con el registro de marcas, atención al cliente y comunicación
+        informativa.
+      </p>
+
+      <p>
+        No compartimos, vendemos ni alquilamos información personal a terceros,
+        excepto cuando sea requerido por ley o autoridades competentes.
+      </p>
+
+      <p>
+        Al utilizar nuestro sitio web, usted acepta esta política de privacidad
+        y el tratamiento responsable de sus datos.
+      </p>
+    </div>
+
+    <button class="modal-btn" (click)="close()">Cerrar</button>
+  </div>
+</div>
+
+<!-- MODAL TÉRMINOS -->
+<div class="modal-overlay" *ngIf="showTerms">
+  <div class="modal">
+    <h3>Términos y Condiciones</h3>
+
+    <div class="modal-content">
+      <p>
+        El uso del sitio web de MarcaFirme USA implica la aceptación de los presentes
+        términos y condiciones.
+      </p>
+
+      <p>
+        Los servicios ofrecidos corresponden a asesoría y gestión administrativa
+        relacionada con el registro de marcas en Estados Unidos, sin garantizar
+        aprobación final por parte de las entidades oficiales.
+      </p>
+
+      <p>
+        MarcaFirme USA no será responsable por retrasos, rechazos o decisiones
+        tomadas por organismos gubernamentales.
+      </p>
+
+      <p>
+        Nos reservamos el derecho de modificar estos términos en cualquier momento.
+      </p>
+    </div>
+
+    <button class="modal-btn" (click)="close()">Cerrar</button>
+  </div>
+</div>
