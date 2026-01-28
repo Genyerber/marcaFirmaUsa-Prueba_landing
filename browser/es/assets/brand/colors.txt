@@ -1,7 +1,0 @@
-MarcaFirme USA — Colores
-Primary Blue: #0658F6
-Teal:         #29D3D3
-Cyan:         #14BAE8
-Light Gray:   #F6F6F6
-White:        #FFFFFF
-Text:         #0C1937
